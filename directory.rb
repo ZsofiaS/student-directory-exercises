@@ -15,7 +15,8 @@ def input_students
       cohort = "N/A"
     end
     students << {name: name, country: country, cohort: cohort}
-    puts "Now we have #{students.count} students"
+    students.count == 1 ? studentWord = "student" : studentWord = "students"
+    puts "Now we have #{students.count} #{studentWord}"
     name = gets.chomp
   end
   students
