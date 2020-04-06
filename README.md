@@ -1,5 +1,6 @@
-# Student Directory
-The student dorectory script allows you to manage the list of students enrolled at Villains Academy.
+# Student Directory Exercises
+The student directory script allows you to manage the list of students enrolled at Villains Academy.
+New repo created from Student Directory for additional exercises.
 
 ## How to use ##
 
