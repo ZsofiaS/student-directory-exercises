@@ -16,14 +16,14 @@ end
 
 # Print the list of students
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(45)
+  puts "-------------".center(45)
 end
 
 def print(students)
   n = 0
   while n < students.length
-    puts "#{students[n][:name]} #{students[n][:country]} (#{students[n][:cohort]} cohort)"
+    puts "#{students[n][:name].center(15)} #{students[n][:country]} (#{students[n][:cohort]} cohort)"
     n += 1
   end
 end
