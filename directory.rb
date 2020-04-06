@@ -19,7 +19,7 @@ end
 
 def print(students)
   students.each_with_index do |student, index|
-    if student[:name][0].capitalize == "Z"
+    if student[:name].length < 12
       puts "#{index + 1} #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
@@ -27,7 +27,7 @@ end
 
 def print_footer(students)
 # print the total number of students
-  puts "Overall, we have #{students.count} great students whose name starts with 'Z'"
+  puts "Overall, we have #{students.count} great students"
 end
 
 students = input_students
