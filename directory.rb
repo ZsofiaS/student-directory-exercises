@@ -1,7 +1,7 @@
 def input_students
   puts "Please enter the names of the students"
   students = []
-  name = gets.chomp
+  name = gets[0...-1]
   while !name.empty? do
     puts "Please enter country of birth"
     country = gets.chomp
