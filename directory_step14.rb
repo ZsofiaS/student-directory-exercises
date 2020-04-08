@@ -1,3 +1,4 @@
+require 'csv'
 @students = []
 
 def add_student(name, country, cohort)
@@ -15,11 +16,10 @@ def save_students(filename)
   else
     output_file = filename
   end
-  File.open(output_file, mode = "w") do |file|
+  CSV.open(output_file, "wb") do |csv|
     @students.each do |student|
       student_data = [student[:name], student[:country], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      csv << student_data
     end
   end
   puts "Student data has been saved."
@@ -32,11 +32,9 @@ def load_students(filename)
   else 
     input_file = "students.csv"
   end
-  File.open(input_file, mode = "r") do |file|
-    file.readlines.each do |line|
-      name, country, cohort = line.chomp.split(",")
-      add_student(name, country, cohort)
-    end
+  CSV.foreach(input_file) do |row|
+    name, country, cohort = row
+    add_student(name, country, cohort)
   end
   puts "Student data has been loaded from #{input_file}."
 end
@@ -60,7 +58,7 @@ def input_students
     country = STDIN.gets.chomp
     puts "Please enter cohort"
     puts "To finish, just hit return twice"
-    cohort = STDIN.gets.chomp
+    cohort = STDIN.gets.chomp.to_sym
     country = "N/A" if country.empty? 
     cohort = "N/A" if cohort.empty?
     add_student(name, country, cohort)
@@ -83,8 +81,8 @@ def print_menu
     puts "Select an option:"
     puts "1. Input the students"
     puts "2. Show the students"
-    puts "3. Save the list to students.csv"
-    puts "4. Load the list from students.csv"
+    puts "3. Save the list to CSV file"
+    puts "4. Load the list from CSV file"
     puts "9. Exit"
     puts "************************************"
 end
@@ -120,7 +118,7 @@ end
 
 def print_students_list
   @students.each do |student|
-    puts "#{student[:name].center(15)} #{student[:country]} (cohort: #{student[:cohort]})"
+    puts "#{student[:name].center(15)} #{student[:country].center(15)} (cohort: #{student[:cohort]})"
   end
 end
 
