@@ -97,8 +97,13 @@ def print_header
 end
 
 def print_students_list
-  @students.each do |student|
-    puts "#{student[:name].center(15)} #{student[:country]} (cohort: #{student[:cohort]})"
+  cohorts = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december]
+  cohorts.map do |cohort|
+    @students.each do |student|
+      if student[:cohort] == cohort
+        puts "#{student[:name].center(15)} #{student[:country]} (#{student[:cohort]} cohort)"
+      end
+    end
   end
 end
 
